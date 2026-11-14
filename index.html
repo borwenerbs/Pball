@@ -54,7 +54,18 @@
 <section id="page-settings" class="page">
 <h1>Settings</h1><div class="settings-card"><h2>Theme & Display</h2><p class="muted">Choose how Pickleball Scorekeeper looks on this device.</p>
 <div class="theme-options"><label><input type="radio" name="theme" value="system"> System</label><label><input type="radio" name="theme" value="light"> Light</label><label><input type="radio" name="theme" value="dark"> Dark</label></div><div id="theme-preview" class="theme-preview">Preview · 1 – 1 – 2</div></div>
-<div class="settings-card"><h2>Backup & Sync</h2><button id="export-data" class="secondary-btn full">EXPORT BACKUP (JSON)</button><label class="file-label">Import backup<input type="file" id="import-data" accept="application/json"></label>
+<div class="settings-card"><h2>Backup & Sync</h2>
+<p class="muted">Export a complete local backup before resetting or clearing data. Export and import work offline.</p>
+<button id="export-data" class="secondary-btn full">EXPORT DATA (JSON)</button>
+<label class="file-label">Import data<input type="file" id="import-data" accept="application/json"></label>
+</div>
+<div class="settings-card"><h2>Data Management</h2>
+<p class="muted">Reset match results while keeping your player list and display/server settings. Clear All Data removes all data stored on this device. Neither action deletes the ZimaOS server copy.</p>
+<button id="reset-data" class="secondary-btn full">RESET MATCH DATA</button>
+<button id="clear-data" class="danger-btn full">CLEAR ALL LOCAL DATA</button>
+<p class="muted">For safety, both actions ask for confirmation. Export a backup first if you may need these records later.</p>
+</div>
+<div class="settings-card"><h2>ZimaOS Sync</h2>
 <label>Optional ZimaOS sync server URL<input id="sync-url" type="url" placeholder="https://your-server.example.com"></label><button id="save-sync-url" class="secondary-btn full">SAVE SERVER ADDRESS</button><button id="sync-now" class="primary-btn full">SYNC NOW</button><p class="muted" id="sync-message">Local-first storage. Sync is optional.</p></div>
 <div class="settings-card"><h2>About</h2><p class="muted">Install this app from your browser's Add to Home Screen menu. Once installed and cached, scoring and records work offline.</p></div>
 </section>

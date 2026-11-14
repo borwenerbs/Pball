@@ -8,7 +8,7 @@
 - Large shouted score call, centered score display, Home / Undo / Away rally row.
 - Player win-loss records, percentage ranking, attendance filter based on the current match roster.
 - Light / Dark / System theme preference.
-- JSON export/import.
+- Complete JSON export/import, including the current in-progress match.\n- Reset Match Data (clears current/completed matches while keeping players and settings).\n- Clear All Local Data (two-step confirmation; does not delete the optional ZimaOS server copy).
 - Optional ZimaOS sync API service (basic shared JSON snapshot endpoint).
 
 ## Deploy the PWA
@@ -27,3 +27,6 @@ The prototype implements the standard doubles two-server sequence at the team le
 - Sync currently merges players and completed matches by ID; it does not yet reconcile concurrent edits to the same player record.
 - Attendance ranking currently uses the players in the active match roster as the attendance set.
 - Test scoring rules against your league's adopted rulebook before relying on it for official tournament play.
+
+## Data management
+Open **Settings → Backup & Sync** to export or import a complete JSON backup. Export includes the player list, completed matches, current in-progress match, theme, and sync configuration. **Reset Match Data** clears match history and the active match but keeps players, theme, and server address. **Clear All Local Data** requires two confirmations and clears all app data on that device. Neither reset operation sends a delete request to the optional ZimaOS server; its copy remains untouched.
