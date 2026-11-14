@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f4f6f8"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icons/icon-192.png">
+<title>Pickleball Scorekeeper</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+<nav class="tabs" aria-label="Main navigation">
+<button class="tab active" data-page="score">Score</button><button class="tab" data-page="players">Players</button><button class="tab" data-page="setup">Match Setup</button><button class="tab" data-page="records">Records</button><button class="tab" data-page="settings">Settings</button>
+</nav>
+<main>
+<section id="page-score" class="page active">
+<div class="statusline"><span id="online-status">Offline-ready</span><span id="sync-status">Local data</span></div>
+<div class="shout-card"><div class="eyebrow">SCORE TO CALL</div><div id="shout-score" class="shout-score">0 – 0 – 2</div><div id="serve-caption" class="serve-caption">Team A serving · Server 2</div></div>
+<div class="scoreboard">
+<div class="score-team team-a"><div class="team-name" id="score-team-a-name">HOME / TEAM A</div><div class="score-number" id="score-a">0</div><div class="player-line" id="score-a-players">No players selected</div><div class="serve-tag" id="serve-a">SERVING</div></div>
+<div class="score-team team-b"><div class="team-name" id="score-team-b-name">AWAY / TEAM B</div><div class="score-number" id="score-b">0</div><div class="player-line" id="score-b-players">No players selected</div><div class="serve-tag hidden" id="serve-b">SERVING</div></div>
+</div>
+<div class="rally-row"><button id="win-a" class="rally-btn home-btn">HOME<br><small>Won rally</small></button><button id="undo" class="rally-btn undo-btn">↶<br><small>UNDO</small></button><button id="win-b" class="rally-btn away-btn">AWAY<br><small>Won rally</small></button></div>
+<div class="match-actions"><button id="new-match" class="secondary-btn">NEW MATCH</button><button id="finish-match" class="secondary-btn">FINISH MATCH</button></div>
+<div class="score-note" id="score-note">Set up a match to begin scoring.</div>
+</section>
+
+<section id="page-players" class="page">
+<h1>Player Setup</h1><p class="muted">Add several names at once. Separate names with commas or line breaks.</p>
+<textarea id="bulk-names" rows="5" placeholder="Alex, Ben, Chris&#10;Daniel&#10;Ethan"></textarea>
+<div class="row-actions"><span id="name-count" class="muted">0 names detected</span><button id="add-players" class="primary-btn">Add players</button></div>
+<h2>Player database</h2><div id="player-list" class="stack"></div>
+</section>
+
+<section id="page-setup" class="page">
+<h1>Match Setup</h1>
+<div class="team-panel panel-a"><div class="panel-heading"><h2>TEAM A · HOME</h2><span>2 players</span></div>
+<label>Player 1<select id="a1"></select></label><label>Player 2<select id="a2"></select></label></div>
+<div class="team-panel panel-b"><div class="panel-heading"><h2>TEAM B · AWAY</h2><span>2 players</span></div>
+<label>Player 1<select id="b1"></select></label><label>Player 2<select id="b2"></select></label></div>
+<div class="settings-card"><h2>Game format</h2><label>Play to<select id="target-score"><option>11</option><option>15</option><option>21</option></select></label><label class="check-label"><input type="checkbox" id="win-by-two" checked> Win by 2 points</label></div>
+<div class="settings-card"><h2>Who serves first?</h2><p class="muted">Play one deciding point. The team that wins earns the first serve.</p><button id="start-serve-off" class="primary-btn full">START PLAY-FOR-SERVE</button>
+<div id="serve-off-controls" class="hidden"><div class="serve-question">Who won the deciding point?</div><div class="rally-row"><button id="serve-off-a" class="rally-btn home-btn">TEAM A</button><button id="serve-off-b" class="rally-btn away-btn">TEAM B</button></div></div>
+<div id="serve-off-result" class="muted"></div></div>
+<button id="start-match" class="primary-btn full">START MATCH</button>
+</section>
+
+<section id="page-records" class="page">
+<h1>Player Records</h1><p class="muted">Rankings use completed matches. Filter to players who attended this session.</p>
+<label class="check-label"><input type="checkbox" id="attendance-only"> Show attendance only</label>
+<div id="records-list" class="stack"></div>
+<h2>Match history</h2><div id="match-history" class="stack"></div>
+</section>
+
+<section id="page-settings" class="page">
+<h1>Settings</h1><div class="settings-card"><h2>Theme & Display</h2><p class="muted">Choose how Pickleball Scorekeeper looks on this device.</p>
+<div class="theme-options"><label><input type="radio" name="theme" value="system"> System</label><label><input type="radio" name="theme" value="light"> Light</label><label><input type="radio" name="theme" value="dark"> Dark</label></div><div id="theme-preview" class="theme-preview">Preview · 1 – 1 – 2</div></div>
+<div class="settings-card"><h2>Backup & Sync</h2><button id="export-data" class="secondary-btn full">EXPORT BACKUP (JSON)</button><label class="file-label">Import backup<input type="file" id="import-data" accept="application/json"></label>
+<label>Optional ZimaOS sync server URL<input id="sync-url" type="url" placeholder="https://your-server.example.com"></label><button id="save-sync-url" class="secondary-btn full">SAVE SERVER ADDRESS</button><button id="sync-now" class="primary-btn full">SYNC NOW</button><p class="muted" id="sync-message">Local-first storage. Sync is optional.</p></div>
+<div class="settings-card"><h2>About</h2><p class="muted">Install this app from your browser's Add to Home Screen menu. Once installed and cached, scoring and records work offline.</p></div>
+</section>
+</main>
+</div>
+<script src="app.js"></script>
+</body></html>
